@@ -1,12 +1,12 @@
 all: tinyhelloworld cleanup
 
 tinyhelloworld:
-	nasm -f bin -o elftrampoline.o elftrampoline.asm
-	nasm -f elf32 -o start_main.o start_main.asm
+	nasm -f bin -o elf.o elf.asm
+	nasm -f elf32 -o placeholder.o placeholder.asm
 	tinygo build -gc leaking -ldflags '-specs /usr/lib/i386-linux-musl/musl-gcc.specs' -o helloworld.o
-	ld -entry=start -Ttext=0x05430000 -nmagic -o helloworld start_main.o helloworld.o
+	ld -entry=start -Ttext=0x05430000 -nmagic -o helloworld placeholder.o helloworld.o
 	objcopy -O binary -j '.*t*' helloworld tinyhelloworld
-	dd if=elftrampoline.o of=tinyhelloworld conv=notrunc
+	dd if=elf.o of=tinyhelloworld conv=notrunc
 	chmod +x tinyhelloworld
 
 cleanup:

@@ -4,7 +4,7 @@
 $ make clean
 $ docker build -t build-go-tinyhelloworld . && docker run -v "$(pwd):/project" build-go-tinyhelloworld
 $ stat -c %s ./tinyhelloworld
-127
+107
 $ ./tinyhelloworld 
 Hello, world!
 ```

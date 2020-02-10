@@ -20,7 +20,3 @@ BITS 32
 	dw 0x0020      ; 0x2a: e_phentsize
 	dw 0x0001      ; 0x2c: e_phnum
 _start:
-	call _start+10
-	mov eax, 1
-	mov ebx, 0
-	int 0x80
