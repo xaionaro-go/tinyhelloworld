@@ -42,7 +42,7 @@ $ hexdump -C tinyhelloworld
 
 # Comments
 
-`elf.asm` is just ELF-headers, a wrapper to call the `main()`.
+`elf.asm` is just ELF-headers and a wrapper to call the `main()`.
 
 The binary could be even less if we place our useful data right into the ELF headers
 (see [an example](http://www.muppetlabs.com/~breadbox/software/tiny/hello.asm.txt)).
