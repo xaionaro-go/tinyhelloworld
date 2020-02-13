@@ -3,7 +3,7 @@ all: tinyhelloworld cleanup
 tinyhelloworld: build link
 
 build: emptyelf
-	tinygo build -gc leaking -ldflags '-specs /usr/lib/i386-linux-musl/musl-gcc.specs' -o helloworld.o
+	tinygo build -gc leaking -o helloworld.o
 	ld -entry=main -Ttext=0x010000$(shell printf '%x' $(shell stat -c %s emptyelf)) -nmagic -o helloworld helloworld.o
 
 emptyelf:
