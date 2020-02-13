@@ -1,10 +1,13 @@
+LDFLAGS=-m elf_i386
+LLVMFLAGS=-target i386-pc-linux-gnu
+
 all: tinyhelloworld cleanup
 
 tinyhelloworld: build link
 
 build: emptyelf
-	tinygo build -gc leaking -o helloworld.o
-	ld -entry=main -Ttext=0x010000$(shell printf '%x' $(shell stat -c %s emptyelf)) -nmagic -o helloworld helloworld.o
+	tinygo build $(LLVMFLAGS) -gc leaking -o helloworld.o
+	ld $(LDFLAGS) -entry=main -Ttext=0x010000$(shell printf '%x' $(shell stat -c %s emptyelf)) -nmagic -o helloworld helloworld.o
 
 emptyelf:
 	touch tinyhelloworld.bin

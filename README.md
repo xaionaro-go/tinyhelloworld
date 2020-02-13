@@ -19,11 +19,22 @@ This work is published from:
 # Quick start
 
 ```sh
-$ make clean
+$ rm -f tinyhelloworld
 $ docker build -t build-go-tinyhelloworld . && docker run -v "$(pwd):/project" build-go-tinyhelloworld
 $ stat -c %s ./tinyhelloworld
 99
-$ ./tinyhelloworld 
+$ ./tinyhelloworld
+Hello, world!
+```
+
+OR
+
+```sh
+$ rm -f tinyhelloworld
+$ make all
+$ stat -c %s ./tinyhelloworld
+99
+$ ./tinyhelloworld
 Hello, world!
 ```
 
