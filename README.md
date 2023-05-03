@@ -60,7 +60,7 @@ The binary could be even less if we place our useful data right into the ELF hea
 
 # See also
 
-* [Using Rust to make a 151-byte static AMD64 Linux binary](https://github.com/kmcallister/tiny-rust-demo).
+* [Using Rust to make a 137-byte static AMD64 Linux binary](https://github.com/tormol/tiny-rust-executable).
 * [A "hello, world" in a 62-byte ELF using NASM](http://www.muppetlabs.com/~breadbox/software/tiny/hello.asm.txt).
 
 # Why is Go binary so big
