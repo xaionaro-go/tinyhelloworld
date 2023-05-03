@@ -1,0 +1,11 @@
+{
+        "llvm-target": "i386-pc-linux-gnu",
+        "goos": "linux",
+        "goarch": "386",
+        "gc": "none",
+        "scheduler": "none",
+        "linker": "ld.lld",
+        "ldflags": [
+                "--lto-O3", "-entry=actual_main", "--relax", "-Tlinkerscript.ld"
+        ]
+}

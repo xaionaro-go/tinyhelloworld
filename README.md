@@ -22,7 +22,7 @@ This work is published from:
 $ rm -f tinyhelloworld
 $ docker build -t build-go-tinyhelloworld . && docker run -v "$(pwd):/project" build-go-tinyhelloworld
 $ stat -c %s ./tinyhelloworld
-98
+91
 $ ./tinyhelloworld
 Hello, world!
 ```
@@ -33,7 +33,7 @@ OR
 $ rm -f tinyhelloworld
 $ make all
 $ stat -c %s ./tinyhelloworld
-98
+91
 $ ./tinyhelloworld
 Hello, world!
 ```
@@ -44,11 +44,10 @@ $ hexdump -C tinyhelloworld
 00000000  7f 45 4c 46 01 00 00 00  00 00 00 00 00 00 00 01  |.ELF............|
 00000010  02 00 03 00 00 00 00 01  2e 00 00 01 04 00 00 00  |................|
 00000020  00 00 00 00 00 00 00 00  00 00 20 00 01 00 e8 07  |.......... .....|
-00000030  00 00 00 31 c0 31 db 40  cd 80 53 31 db 43 b9 54  |...1.1.@..S1.C.T|
-00000040  00 00 01 ba 0e 00 00 00  b8 04 00 00 00 cd 80 5b  |...............[|
-00000050  c3 cc cc cc 48 65 6c 6c  6f 2c 20 77 6f 72 6c 64  |....Hello, world|
-00000060  21 0a                                             |!.|
-00000062
+00000030  00 00 00 31 c0 31 db 40  cd 80 53 6a 04 58 31 db  |...1.1.@..Sj.X1.|
+00000040  43 6a 0e 5a b9 4d 00 00  01 cd 80 5b c3 48 65 6c  |Cj.Z.M.....[.Hel|
+00000050  6c 6f 2c 20 77 6f 72 6c  64 21 0a                 |lo, world!.|
+0000005b
 ``````
 
 # Comments
