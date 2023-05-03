@@ -1,13 +1,12 @@
-LDFLAGS=-m elf_i386
-LLVMFLAGS=-target i386-pc-linux-gnu
+GOFLAGS=-buildvcs=false
 
 all: tinyhelloworld cleanup
 
 tinyhelloworld: build link
 
 build: emptyelf
-	tinygo build $(LLVMFLAGS) -gc leaking -o helloworld.o
-	ld $(LDFLAGS) -entry=main -Ttext=0x010000$(shell printf '%x' $(shell stat -c %s emptyelf)) -nmagic -o helloworld helloworld.o
+	./generate_config.sh
+	GOFLAGS=$(GOFLAGS) tinygo build -target custom.json -x -opt s -panic trap -o helloworld
 
 emptyelf:
 	touch tinyhelloworld.bin
@@ -15,12 +14,12 @@ emptyelf:
 	rm -f tinyhelloworld.bin
 
 link:
-	objcopy -O binary -j '.*t*' helloworld tinyhelloworld.bin
-	nasm -f bin -D ENTRY_ADDRESS=0x$(shell objdump --disassemble=main ./helloworld | awk '{if($$2=="<main>:"){print $$1}}') -o tinyhelloworld elf.asm
+	objcopy -O binary -j '\.text' -j '\.rodata' helloworld tinyhelloworld.bin
+	nasm -f bin -D ENTRY_ADDRESS=0x$(shell objdump --disassemble=actual_main ./helloworld | awk '{if($$2=="<actual_main>:"){print $$1}}') -o tinyhelloworld elf.asm
 	chmod +x tinyhelloworld
 
 cleanup:
-	rm -f *.o *.bin helloworld emptyelf
+	rm -f *.o *.bin helloworld emptyelf custom.json
 
 clean: cleanup
 	rm -f tinyhelloworld

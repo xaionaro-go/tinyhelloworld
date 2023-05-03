@@ -10,6 +10,7 @@ func WriteString(fd int, s string) {
 	syscall.Syscall(4, uintptr(fd), hdr.Ptr, uintptr(len(s)))
 }
 
+//export actual_main
 func main() {
 	WriteString(1, "Hello, world!\n")
 }

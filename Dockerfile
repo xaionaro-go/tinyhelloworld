@@ -1,11 +1,13 @@
-FROM i386/ubuntu:19.10
+FROM ubuntu:23.04
 
 RUN apt-get update && \
-	apt-get install -y git golang llvm-9-dev libclang-9-dev make nasm && \
-	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
+	apt-get install -y git golang llvm-dev libclang-dev lld make nasm musl-dev && \
+        (apt-get install -y llvm-15-dev libclang-15-dev lld-15 || true) && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
 
-RUN go get github.com/tinygo-org/tinygo
+RUN mkdir -p /root/go/src/github.com/tinygo-org && git -C /root/go/src/github.com/tinygo-org clone --recursive https://github.com/tinygo-org/tinygo tinygo
+RUN cd /root/go/src/github.com/tinygo-org/tinygo && go install ./
 
 RUN mkdir /project
 VOLUME /project
